@@ -1,4 +1,29 @@
 {% load i18n %}
+
+<h4>{% trans 'View information' %}</h4>
+<table>
+	<thead>
+		<tr>
+			<th>{% trans 'View Function' %}</th>
+			<th>{% trans 'args' %}</th>
+			<th>{% trans 'kwargs' %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>{{ view_func }}</td>
+			<td>{{ view_args|default:"None" }}</td>
+			<td>
+			{% for k, v in view_kwargs.items %}
+				{{ k }}={{ v }}{% if not forloop.last %}, {% endif %}
+			{% empty %}
+				None
+			{% endfor %}
+			</td>
+		</tr>
+	</tbody>
+</table>
+
 <h4>{% trans 'COOKIES Variables' %}</h4>
 {% if cookies %}
 	<table>
